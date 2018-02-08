@@ -44,17 +44,7 @@ public class buyCommand implements CommandExecutor {
         Optional<Integer> amount = args.getOne("amount");
         Optional<Integer> cost = args.getOne("cost");
         Optional<ItemStack> handitem = player.getItemInHand(HandTypes.MAIN_HAND);
-        if (!amount.isPresent()) {
-            Utils.sendMessage(player, "&cYou must supply an amount");
-            shop.clear();
-            return CommandResult.empty();
-        }
         shop.add(String.valueOf(amount.get()));
-        if (!cost.isPresent()) {
-            Utils.sendMessage(player, "&cYou must supply a cost");
-            shop.clear();
-            return CommandResult.empty();
-        }
         shop.add(String.valueOf(cost.get()));
         if (!handitem.isPresent()) {
             Utils.sendMessage(player, "&cYou must be holding a item in your hand to set a shop");
