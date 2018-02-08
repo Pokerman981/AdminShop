@@ -23,6 +23,7 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.config.DefaultConfig;
+import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.plugin.Plugin;
@@ -140,6 +141,17 @@ public class Main implements CommandExecutor{
                 .permission("adminshopec.reload")
                 .build();
         Sponge.getCommandManager().register(this, reload, "ashopreload");
+
+
+        //Sponge.getGame().getDataManager().register(Data.class, Data.Immutable.class, new Data.Builder());
+
+        DataRegistration.builder()
+                .dataClass(Data.class)
+                .immutableClass(Data.Immutable.class)
+                .builder(new Data.Builder())
+                .manipulatorId("shop_data")
+                .dataName("AdminShop Data")
+                .buildAndRegister(Sponge.getPluginManager().getPlugin("commandnpcsec").get());
 
     }
 

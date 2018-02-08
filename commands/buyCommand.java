@@ -1,8 +1,11 @@
 package me.pokerman99.AdminShop.commands;
 
+import me.pokerman99.AdminShop.Data;
+import me.pokerman99.AdminShop.Keys;
 import me.pokerman99.AdminShop.Main;
 import me.pokerman99.AdminShop.Utils;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -16,6 +19,8 @@ import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,10 +36,36 @@ public class buyCommand implements CommandExecutor {
     }
 
     public static List<UUID> users = new ArrayList<>();
+    public static List<String> shop = new ArrayList<>();
 
 
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         Player player = (Player) src;
+        Optional<Integer> amount = args.getOne("amount");
+        Optional<Integer> cost = args.getOne("cost");
+        Optional<ItemStack> handitem = player.getItemInHand(HandTypes.MAIN_HAND);
+        if (!amount.isPresent()) {
+            Utils.sendMessage(player, "&cYou must supply an amount");
+            shop.clear();
+            return CommandResult.empty();
+        }
+        shop.add(String.valueOf(amount.get()));
+        if (!cost.isPresent()) {
+            Utils.sendMessage(player, "&cYou must supply a cost");
+            shop.clear();
+            return CommandResult.empty();
+        }
+        shop.add(String.valueOf(cost.get()));
+        if (!handitem.isPresent()) {
+            Utils.sendMessage(player, "&cYou must be holding a item in your hand to set a shop");
+            shop.clear();
+            return CommandResult.empty();
+        }
+        shop.add(Utils.deserialize(handitem.get()).get());
+        users.add(player.getUniqueId());
+        return CommandResult.success();
+
+        /*Player player = (Player) src;
         Optional<Integer> amount = args.getOne("amount");
         if (!amount.isPresent()) {
             Utils.sendMessage(player, "&cYou must supply an amount");
@@ -76,7 +107,7 @@ public class buyCommand implements CommandExecutor {
         users.add(player.getUniqueId());
 
         Utils.sendMessage(player, "&aRight click a sign to set the location");
-        return CommandResult.success();
+        return CommandResult.success();*/
     }
 }
 
