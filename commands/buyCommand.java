@@ -51,8 +51,9 @@ public class buyCommand implements CommandExecutor {
             shop.clear();
             return CommandResult.empty();
         }
-        shop.add(Utils.deserialize(handitem.get()).get());
+        shop.add(handitem.get().getType().getName());
         users.add(player.getUniqueId());
+        Utils.sendMessage(player, "&aRight click a sign to finish setting the shop");
         return CommandResult.success();
 
         /*Player player = (Player) src;

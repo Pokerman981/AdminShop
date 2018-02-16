@@ -46,6 +46,7 @@ public class buyRightClickListener {
                 sign.offer(new Data(buyCommand.shop));
                 Utils.sendMessage(player, "&aSuccessfully set buy shop!");
                 buyCommand.users.remove(player.getUniqueId());
+                buyCommand.shop.clear();
 
                 /*int max = plugin.rootNode.getNode("buy", "locations").getChildrenMap().size() + 1;
                 if (Utils.onCheckLocationBuy(info, max) == true) {
