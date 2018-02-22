@@ -63,7 +63,7 @@ public class buyRightClickListener {
             TileEntity sign = location.get().getTileEntity().get();
             if (sign.get(Data.class).isPresent()) {
                 Data data = sign.get(Data.class).get();
-                List<String> commands = new ArrayList<>(data.getCmds());
+                List<String> commands = new ArrayList<>(data.getShop_data());
                 MessageChannel.TO_ALL.send(Text.of(commands.toString()));
                 for (int x = 0; x < commands.size(); x++) {
                     MessageChannel.TO_ALL.send(Text.of(x + " " + commands.get(x)));

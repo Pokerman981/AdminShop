@@ -1,5 +1,6 @@
 package me.pokerman99.AdminShop;
-import java.util.ArrayList;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Generated;
@@ -16,47 +17,47 @@ import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 
-@Generated(value = "flavor.pie.generator.data.DataManipulatorGenerator", date = "2018-02-07T18:24:41.314Z")
+@Generated(value = "flavor.pie.generator.data.DataManipulatorGenerator", date = "2018-02-22T01:22:26.418Z")
 public class Data extends AbstractData<Data, Data.Immutable> {
 
-    private List<String> cmds;
+    public List<String> shop_data;
 
     {
         registerGettersAndSetters();
     }
 
     public Data() {
-        cmds = new ArrayList<String>();;
+        shop_data = Collections.emptyList();
     }
 
-    public Data(List<String> cmds) {
-        this.cmds = cmds;
+    public Data(List<String> shop_data) {
+        this.shop_data = shop_data;
     }
 
     @Override
     protected void registerGettersAndSetters() {
-        registerFieldGetter(Keys.CMDS, this::getCmds);
-        registerFieldSetter(Keys.CMDS, this::setCmds);
-        registerKeyValue(Keys.CMDS, this::cmds);
+        registerFieldGetter(Keys.SHOP_DATA, this::getShop_data);
+        registerFieldSetter(Keys.SHOP_DATA, this::setShop_data);
+        registerKeyValue(Keys.SHOP_DATA, this::shop_data);
     }
 
-    public List<String> getCmds() {
-        return cmds;
+    public List<String> getShop_data() {
+        return shop_data;
     }
 
-    public void setCmds(List<String> cmds) {
-        this.cmds = cmds;
+    public void setShop_data(List<String> shop_data) {
+        this.shop_data = shop_data;
     }
 
-    public ListValue<String> cmds() {
-        return Sponge.getRegistry().getValueFactory().createListValue(Keys.CMDS, cmds);
+    public ListValue<String> shop_data() {
+        return Sponge.getRegistry().getValueFactory().createListValue(Keys.SHOP_DATA, shop_data);
     }
 
     @Override
     public Optional<Data> fill(DataHolder dataHolder, MergeFunction overlap) {
         dataHolder.get(Data.class).ifPresent(that -> {
             Data data = overlap.merge(this, that);
-            this.cmds = data.cmds;
+            this.shop_data = data.shop_data;
         });
         return Optional.of(this);
     }
@@ -67,18 +68,18 @@ public class Data extends AbstractData<Data, Data.Immutable> {
     }
 
     public Optional<Data> from(DataView container) {
-        container.getStringList(Keys.CMDS.getQuery()).ifPresent(v -> cmds = v);
+        container.getStringList(Keys.SHOP_DATA.getQuery()).ifPresent(v -> shop_data = v);
         return Optional.of(this);
     }
 
     @Override
     public Data copy() {
-        return new Data(cmds);
+        return new Data(shop_data);
     }
 
     @Override
     public Immutable asImmutable() {
-        return new Immutable(cmds);
+        return new Immutable(shop_data);
     }
 
     @Override
@@ -89,42 +90,42 @@ public class Data extends AbstractData<Data, Data.Immutable> {
     @Override
     public DataContainer toContainer() {
         return super.toContainer()
-                .set(Keys.CMDS.getQuery(), cmds);
+                .set(Keys.SHOP_DATA.getQuery(), shop_data);
     }
 
-    @Generated(value = "flavor.pie.generator.data.DataManipulatorGenerator", date = "2018-02-07T18:24:41.335Z")
+    @Generated(value = "flavor.pie.generator.data.DataManipulatorGenerator", date = "2018-02-22T01:22:26.453Z")
     public static class Immutable extends AbstractImmutableData<Immutable, Data> {
 
-        private List<String> cmds;
+        private List<String> shop_data;
         {
             registerGetters();
         }
 
-        public Immutable() {
-            cmds = new ArrayList<String>();;
+        Immutable() {
+            shop_data = Collections.emptyList();
         }
 
-        public Immutable(List<String> cmds) {
-            this.cmds = cmds;
+        Immutable(List<String> shop_data) {
+            this.shop_data = shop_data;
         }
 
         @Override
         protected void registerGetters() {
-            registerFieldGetter(Keys.CMDS, this::getCmds);
-            registerKeyValue(Keys.CMDS, this::cmds);
+            registerFieldGetter(Keys.SHOP_DATA, this::getShop_data);
+            registerKeyValue(Keys.SHOP_DATA, this::shop_data);
         }
 
-        public List<String> getCmds() {
-            return cmds;
+        public List<String> getShop_data() {
+            return shop_data;
         }
 
-        public ImmutableListValue<String> cmds() {
-            return Sponge.getRegistry().getValueFactory().createListValue(Keys.CMDS, cmds).asImmutable();
+        public ImmutableListValue<String> shop_data() {
+            return Sponge.getRegistry().getValueFactory().createListValue(Keys.SHOP_DATA, shop_data).asImmutable();
         }
 
         @Override
         public Data asMutable() {
-            return new Data(cmds);
+            return new Data(shop_data);
         }
 
         @Override
@@ -135,15 +136,15 @@ public class Data extends AbstractData<Data, Data.Immutable> {
         @Override
         public DataContainer toContainer() {
             return super.toContainer()
-                    .set(Keys.CMDS.getQuery(), cmds);
+                    .set(Keys.SHOP_DATA.getQuery(), shop_data);
         }
 
     }
 
-    @Generated(value = "flavor.pie.generator.data.DataManipulatorGenerator", date = "2018-02-07T18:24:41.337Z")
+    @Generated(value = "flavor.pie.generator.data.DataManipulatorGenerator", date = "2018-02-22T01:22:26.458Z")
     public static class Builder extends AbstractDataBuilder<Data> implements DataManipulatorBuilder<Data, Immutable> {
 
-        public  Builder() {
+        protected Builder() {
             super(Data.class, 1);
         }
 
@@ -164,3 +165,4 @@ public class Data extends AbstractData<Data, Data.Immutable> {
 
     }
 }
+

@@ -1,7 +1,5 @@
 package me.pokerman99.AdminShop.commands;
 
-import me.pokerman99.AdminShop.Data;
-import me.pokerman99.AdminShop.Keys;
 import me.pokerman99.AdminShop.Main;
 import me.pokerman99.AdminShop.Utils;
 import org.spongepowered.api.block.BlockTypes;
@@ -44,13 +42,13 @@ public class buyCommand implements CommandExecutor {
         Optional<Integer> amount = args.getOne("amount");
         Optional<Integer> cost = args.getOne("cost");
         Optional<ItemStack> handitem = player.getItemInHand(HandTypes.MAIN_HAND);
-        shop.add(String.valueOf(amount.get()));
-        shop.add(String.valueOf(cost.get()));
         if (!handitem.isPresent()) {
             Utils.sendMessage(player, "&cYou must be holding a item in your hand to set a shop");
             shop.clear();
             return CommandResult.empty();
         }
+        shop.add(String.valueOf(amount.get()));
+        shop.add(String.valueOf(cost.get()));
         shop.add(handitem.get().getType().getName());
         users.add(player.getUniqueId());
         Utils.sendMessage(player, "&aRight click a sign to finish setting the shop");

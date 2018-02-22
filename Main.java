@@ -25,6 +25,7 @@ import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.config.DefaultConfig;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -91,7 +92,7 @@ public class Main implements CommandExecutor{
     }
 
     @Listener
-    public void onPreInit(GameStartedServerEvent event){
+    public void onPreInit(GameInitializationEvent event){
         Optional<EconomyService> optionalEconomyService = Sponge.getServiceManager().provide(EconomyService.class);
         if (!optionalEconomyService.isPresent())
         {getLogger().severe("There is no Economy Plugin installed on this Server! The money reward will not work!"); return;
@@ -151,7 +152,7 @@ public class Main implements CommandExecutor{
                 .builder(new Data.Builder())
                 .manipulatorId("shop_data")
                 .dataName("AdminShop Data")
-                .buildAndRegister(Sponge.getPluginManager().getPlugin("commandnpcsec").get());
+                .buildAndRegister(Sponge.getPluginManager().getPlugin("adminshopec").get());
 
     }
 
